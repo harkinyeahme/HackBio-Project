@@ -1,0 +1,29 @@
+#!/usr/bin/bash
+# Project 1 of the HackBio Internship: Installing Bioinformatics Software on the Terminal
+# NOTE: Conda(Anaconda or Miniconda) and its environment have been installed and setup. 
+
+#1. This command activates conda base environment 
+conda activate base
+#2. This command creates a funtools environment
+conda create -n funtools python=3.10
+#4. This command uses apt-get to install figlet
+sudo apt-get update && sudo apt-get upgrade -y
+sudo apt-get install figlet
+#5. This command uses the figlet to print my name
+figlet olanrewaju
+#6. This command installs bwa using the bioconda channel
+conda install -c bioconda bwa -y
+#7. This command installs blast using the bioconda channel
+conda install blast -y
+#8. This command installs samtools using the bioconda channel
+conda install -c bioconda samtools -y
+#9. This command installs bedtools using the bioconda channel
+conda install -c bioconda bedtools -y
+#10. This command installs spades.py using the bioconda channel
+conda install -c bioconda spades -y
+#11. This command installs bcftools using the bioconda channel
+conda install -c bioconda bcftools -y
+#12. This command installs fastp using the bioconda channel
+conda install -c bioconda fastp -y
+#13. This command installs multiqc using the bioconda channel
+conda install -c bioconda multiqc -y

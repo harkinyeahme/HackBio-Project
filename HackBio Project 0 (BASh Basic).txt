@@ -1,0 +1,33 @@
+#!/usr/bin/bash
+# Project 0 of the HackBio Internship: BASh Basic
+
+#1. This command prints my name
+name=olanrewaju
+echo $name
+#2. This command creates a folder titled my name 'olanrewaju'. The -p helps to check for errors during folder creation.
+mkdir -p $name
+#3. This command creates a new directory titled 'biocomputing' and changes to the directory in one line of command
+mkdir -p biocomputing && cd biocomputing
+#4. This command downloads 3 files from a different sources
+wget https://raw.githubusercontent.com/josoga2/dataset-repos/main/wildtype.fna && wget https://raw.githubusercontent.com/josoga2/dataset-repos/main/wildtype.gbk && wget https://raw.githubusercontent.com/josoga2/dataset-repos/main/wildtype.gbk
+#5. This command moves a ".fna" file into another directory 
+mv wildtype.fna ~/olanrewaju/
+#6. This command removes a duplicate file in the directory ~/biocomputing/
+rm ~/biocomputing/*.gbk.*
+#7 This command checks the .fna file for specific DNA sequence patterns. 
+# The -q option makes grep run quietly (no output). 
+# If 'tatatata' is found, it prints that the sequence belongs to the mutant strain; 
+# if 'tata' is found instead, it prints that the sequence belongs to the wildtype strain.
+if grep -q 'tatatata' ~/olanrewaju/wildtype.fna; then echo 'This sequence belongs to the mutant strain'; elif  grep -q 'tata' wildtype.fna; then echo 'This sequence belongs to the wildtype strain'; fi
+#8. This command saves the resulting wildtype sequence into a new file 
+grep 'tatatata' ~/olanrewaju/wildtype.fna > mutant_valid.fna
+# 9. This command counts the number of lines excluding the header in .gbk file
+echo "The number of lines excluding header is $(grep -v 'LOCUS' ~/biocomputing/wildtype.gbk | wc -l)"
+#10. This command prints the sequence length of a .gbk file
+echo "This sequence length of the file is $(grep 'LOCUS' ~/biocomputing/wildtype.gbk | awk '{print $3}')"
+#11. This command prints the source organism of a .gbk file
+echo "The source organism is $(grep 'SOURCE' ~/biocomputing/wildtype.gbk | awk '{print $2, $3}')"
+#12. This command clears the terminal space and print all commands used today      
+clear && history
+#13. This command lists the files in the two folders
+ls -lh ~/olanrewaju/ && ls -lh ~/biocomputing/
