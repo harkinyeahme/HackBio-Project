@@ -6,6 +6,8 @@
 conda activate base
 #2. This command creates a funtools environment
 conda create -n funtools python=3.10
+#3. Activate funtools environment
+conda activate funtools
 #4. This command uses apt-get to install figlet
 sudo apt-get update && sudo apt-get upgrade -y
 sudo apt-get install figlet
@@ -27,3 +29,4 @@ conda install -c bioconda bcftools -y
 conda install -c bioconda fastp -y
 #13. This command installs multiqc using the bioconda channel
 conda install -c bioconda multiqc -y
+
