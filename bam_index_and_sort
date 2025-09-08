@@ -1,0 +1,15 @@
+#!/bin/bash
+SAMPLES=(
+        "ACBarrie"
+        "Alsen"
+        "Chara"
+        "Dexter"
+        "Drysdale"
+        )
+for SAMPLE in "${SAMPLES[@]}"; do
+echo "Currently sorting $SAMPLE"
+samtools sort "${SAMPLE}.bam" -o "${SAMPLE}_sorted.bam"
+echo "Currently indexing $SAMPLE"
+samtools index "${SAMPLE}_sorted.bam"
+echo "Sorting and indexing completed"
+done
