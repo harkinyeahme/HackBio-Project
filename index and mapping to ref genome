@@ -1,0 +1,34 @@
+# Defining samples
+SAMPLES=(
+        "ACBarrie"
+        "Alsen"
+        "Baxter"
+        "Chara"
+        "Drysdale"
+        )
+# Create directories
+mkdir -p repaired
+mkdir -p alignment_map
+#Reference genome check
+REFERENCE="references/reference.fasta"
+if [[ ! -f "$REFERENCE" ]]; then
+echo "[ERROR] Reference genome $REFERENCE not found !"
+exit 1
+fi
+
+echo "[INFO] Building BWA index"
+bwa index "$REFERENCE"
+echo "BWA indexing Completed"
+
+
+out1="repaired/${SAMPLE}_R1_rep.fastq.gz" \
+out2="repaired/${SAMPLE}_R2_rep.fastq.gz" \
+outsingle="repaired/${SAMPLE}_single.fq.gz"
+bwa mem -t 8 \
+references/reference.fasta \
+"repaired/${SAMPLE}_R1_rep.fastq.gz" \
+"repaired/${SAMPLE}_R2_rep.fastq.gz" \
+| samtools view -b \
+>"alignment_map/${SAMPLE}.bam"
+echo "repair and alignment complete"
+done
